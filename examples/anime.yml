@@ -1,0 +1,47 @@
+maintitle: "Bocchi the Rock!"
+dir: "anime"
+type: "anime"
+config:
+    - audio: true
+      num: 1
+
+    - subtitles: true
+      num: 1
+
+    - fonts: true
+episodes:
+    - code: "S01E01"
+      title: "転がるぼっち"
+
+    - code: "S01E02"
+      title: "また明日"
+
+    - code: "S01E03"
+      title: "馳せサンズ"
+
+    - code: "S01E04"
+      title: "ジャンピングガール(ズ)"
+
+    - code: "S01E05"
+      title: "飛べない魚"
+
+    - code: "S01E06"
+      title: "八景"
+
+    - code: "S01E07"
+      title: "君の家まで"
+
+    - code: "S01E08"
+      title: "ぼっち・ざ・ろっく"
+
+    - code: "S01E09"
+      title: "江ノ島エスカー"
+
+    - code: "S01E10"
+      title: "アフターダーク"
+
+    - code: "S01E11"
+      title: "十二進法の夕景"
+
+    - code: "S01E12"
+      title: "君に朝が降る"
