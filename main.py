@@ -8,7 +8,7 @@ import yaml
 
 
 def run_ffmpeg(cmd: list[str]) -> None:
-    """Run the command through ffmpeg."""
+    """Run the command through ffmpeg"""
     print(*cmd)
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
@@ -19,6 +19,7 @@ def run_ffmpeg(cmd: list[str]) -> None:
 
 
 def get_config(data: dict) -> list:
+    """Get the content's parameters from data.yaml"""
     config = []
     audio = ["-map"]
     subtitles = ["-map"]
@@ -45,18 +46,19 @@ def get_config(data: dict) -> list:
 
 
 def get_title(data: dict, counter: int) -> str:
-    """Get the content's title."""
+    """Get the content's title"""
     episode = data["episodes"][counter]
     return f"{data["maintitle"]} - {episode["title"]}"
 
 
 def get_filename(data: dict, counter: int) -> str:
-    """Get the content's final filename."""
+    """Get the content's final filename"""
     episode = data["episodes"][counter]
     return f"{data["maintitle"]} - {episode["code"]} - {episode["title"]}"
 
 
 def set_anime(data: dict) -> None:
+    """This is for anime content"""
     files = Path(data["dir"])
 
     for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
@@ -80,6 +82,7 @@ def set_anime(data: dict) -> None:
 
 
 def set_series(data: dict) -> None:
+    """This is for series content"""
     files = Path(data["dir"])
 
     for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
@@ -97,6 +100,7 @@ def set_series(data: dict) -> None:
 
 
 def globo_aspectratio_fix(data: dict) -> None:
+    """Fix old Globo content which had its aspect ratio stretched from 4:3 to 16:9"""
     files = Path(data["dir"])
 
     for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
@@ -138,6 +142,8 @@ def main():
                     set_anime(DATA)
                 case "series":
                     set_series(DATA)
+                case "globo":
+                    globo_aspectratio_fix(DATA)
         except yaml.YAMLError as err:
             print(err)
 
