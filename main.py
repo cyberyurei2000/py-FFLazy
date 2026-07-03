@@ -61,7 +61,7 @@ def set_anime(data: dict) -> None:
     """This is for anime content"""
     files = Path(data["dir"])
 
-    for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
+    for counter, file in enumerate(f for f in sorted(files.iterdir()) if f.is_file()):
         if counter >= len(data["episodes"]):
             continue
 
@@ -85,7 +85,7 @@ def set_series(data: dict) -> None:
     """This is for series content"""
     files = Path(data["dir"])
 
-    for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
+    for counter, file in enumerate(f for f in sorted(files.iterdir()) if f.is_file()):
         if counter >= len(data["episodes"]):
             continue
 
@@ -103,7 +103,7 @@ def globo_aspectratio_fix(data: dict) -> None:
     """Fix old Globo content which had its aspect ratio stretched from 4:3 to 16:9"""
     files = Path(data["dir"])
 
-    for counter, file in enumerate(f for f in files.iterdir() if f.is_file()):
+    for counter, file in enumerate(f for f in sorted(files.iterdir()) if f.is_file()):
         strfile = str(Path(file).stem)
         lenght = len(strfile)
         if strfile.endswith("A"):
